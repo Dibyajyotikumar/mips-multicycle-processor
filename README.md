@@ -74,3 +74,21 @@ datapath control signals and specifies the sequencing operation.
 | **Rformat2** | — | — | — | Write ALU | — | — | Fetch |
 | **BEQ1** | Sub | A | B | — | — | ALUOut-cond | Fetch |
 | **JUMP1** | — | — | — | — | — | Jump address | Fetch |
+## 🚦 Opcode Dispatch
+
+### Dispatch ROM 1
+
+| Opcode | Instruction | Target Microinstruction |
+|---|---|---|
+| `000000` | R-format | `Rformat1` |
+| `000010` | J | `JUMP1` |
+| `000100` | BEQ | `BEQ1` |
+| `100011` | LW | `Mem1` |
+| `101011` | SW | `Mem1` |
+
+### Dispatch ROM 2
+
+| Opcode | Instruction | Target Microinstruction |
+|---|---|---|
+| `100011` | LW | `LW2` |
+| `101011` | SW | `SW2` |
