@@ -54,3 +54,23 @@ The resulting design provides a structured and easily extensible approach to pro
 ## 🧠 ROM-Based Microprogrammed Control Unit
 
 The processor uses a **ROM-based microprogrammed control unit** to generate the control signals required to operate the multi-cycle MIPS datapath. Instead of implementing the control sequence entirely using hardwired combinational logic, the required control signals are stored as microinstructions in ROM. Each microinstruction specifies the datapath operations for a particular processor state, along with a **2-bit sequencing field** that determines how the next microinstruction is selected. The control flow uses sequential execution, return to the Fetch state, and two opcode-based dispatch mechanisms to support the different instruction classes.
+
+
+ ## 🧠 Control Microprogram
+
+The ROM-based control unit uses a microprogram consisting of **10
+microinstructions**. Each microinstruction generates the required
+datapath control signals and specifies the sequencing operation.
+
+| Label | ALU Control | SRC1 | SRC2 | Register Control | Memory Control | PCWrite Control | Sequencing |
+|---|---|---|---|---|---|---|---|
+| **Fetch** | Add | PC | 4 | — | Read PC | ALU | Seq |
+| **Decode** | Add | PC | Extshft | Read | — | — | Dispatch 1 |
+| **Mem1** | Add | A | Extend | — | — | — | Dispatch 2 |
+| **LW2** | — | — | — | — | Read ALU | — | Seq |
+| **LW3** | — | — | — | Write MDR | — | — | Fetch |
+| **SW2** | — | — | — | — | Write ALU | — | Fetch |
+| **Rformat1** | Func code | A | B | — | — | — | Seq |
+| **Rformat2** | — | — | — | Write ALU | — | — | Fetch |
+| **BEQ1** | Sub | A | B | — | — | ALUOut-cond | Fetch |
+| **JUMP1** | — | — | — | — | — | Jump address | Fetch |
