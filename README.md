@@ -51,41 +51,6 @@ The resulting design provides a structured and easily extensible approach to pro
 - FPGA-oriented RTL implementation
 
 ---
+## 🧠 ROM-Based Microprogrammed Control Unit
 
-# 🏗️ Processor Architecture
-
-The processor follows the fundamental organization of the multi-cycle MIPS datapath.
-
-### Major datapath components
-
-```text
-                    ┌──────────────────────┐
-                    │ ROM-Based Control    │
-                    │    Microprogram      │
-                    └──────────┬───────────┘
-                               │
-                         Control Signals
-                               │
-                               ▼
-┌──────┐       ┌─────────┐   ┌─────┐   ┌──────────┐
-│  PC  │──────►│ Memory  │──►│ IR  │──►│ Register │
-└──┬───┘       └─────────┘   └─────┘   │   File   │
-   │                                    └────┬─────┘
-   │                                         │
-   │                                    ┌────▼────┐
-   │                                    │ A / B   │
-   │                                    │Registers│
-   │                                    └────┬────┘
-   │                                         │
-   │                                         ▼
-   │                                    ┌─────────┐
-   └───────────────────────────────────►│   ALU   │
-                                        └────┬────┘
-                                             │
-                                          ALUOut
-                                             │
-                       ┌─────────────────────┼──────────────────┐
-                       │                     │                  │
-                       ▼                     ▼                  ▼
-                    Memory                Register             PC
-                    Access                 Write             Update
+The processor uses a **ROM-based microprogrammed control unit** to generate the control signals required to operate the multi-cycle MIPS datapath. Instead of implementing the control sequence entirely using hardwired combinational logic, the required control signals are stored as microinstructions in ROM. Each microinstruction specifies the datapath operations for a particular processor state, along with a **2-bit sequencing field** that determines how the next microinstruction is selected. The control flow uses sequential execution, return to the Fetch state, and two opcode-based dispatch mechanisms to support the different instruction classes.
