@@ -92,3 +92,61 @@ datapath control signals and specifies the sequencing operation.
 |---|---|---|
 | `100011` | LW | `LW2` |
 | `101011` | SW | `SW2` |
+## 🔄 Microinstruction Sequencing
+
+| `Next[1:0]` | Sequencing Operation | Description |
+|---|---|---|
+| `00` | **SEQ** | Proceed to the next ROM microinstruction |
+| `01` | **FETCH** | Return to the Fetch state |
+| `10` | **DISPATCH 1** | Use opcode to select an entry from Dispatch ROM 1 |
+| `11` | **DISPATCH 2** | Use opcode to select an entry from Dispatch ROM 2 |
+## 🧩 Microinstruction Format
+
+Each ROM entry is an **18-bit microinstruction**:
+
+| Field | Width | Purpose |
+|---|---:|---|
+| Control Field | 16 bits | Generates datapath and control signals |
+| Next Field | 2 bits | Determines microinstruction sequencing |
+| **Total** | **18 bits** | Complete ROM word |
+
+```text
+18-bit ROM Word
+┌────────────────────────────────┬──────────────┐
+│      16-bit Control Field      │ 2-bit Next   │
+│                                │    Field     │
+└────────────────────────────────┴──────────────┘
+### Instruction-level flow
+
+You can then put this immediately below the tables:
+
+```markdown
+## 🔁 Instruction Microprogram Flow
+
+```text
+                 FETCH
+                   │
+                   ▼
+                DECODE
+                   │
+             DISPATCH 1
+                   │
+        ┌──────────┼──────────┐
+        │          │          │
+        ▼          ▼          ▼
+    R-format      LW/SW     BEQ / J
+        │          │          │
+        ▼          ▼          ▼
+    Rformat1      Mem1     BEQ1/JUMP1
+        │          │
+        ▼          ▼
+    Rformat2    DISPATCH 2
+        │          │
+        │       ┌──┴──┐
+        │       ▼     ▼
+        │      LW2   SW2
+        │       │     │
+        │       ▼     │
+        │      LW3    │
+        │       │     │
+        └───────┴─────┴──────► FETCH
