@@ -56,7 +56,16 @@ The resulting design provides a structured and easily extensible approach to pro
 The processor is implemented using a **Multicycle MIPS Datapath** based on the
 Hennessy–Patterson architecture. The datapath reuses the same hardware
 resources across multiple clock cycles to execute different instruction types.
+## 📚 Instruction Set Supported
 
+| Instruction | Type | Operation |
+|---|---|---|
+| **LW** | Memory | Load word from memory |
+| **SW** | Memory | Store word to memory |
+| **ADD** | R-Type | Addition |
+| **SUB** | R-Type | Subtraction |
+| **BEQ** | Branch | Branch if registers are equal |
+| **J** | Jump | Unconditional jump |
 ### Datapath Components
 
 The main components of the datapath are:
@@ -148,3 +157,13 @@ The control unit uses an **18-bit microinstruction format**, consisting of a **1
 | 101011 | **SW2** | 0 | 0 | 1 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 00 | 00 | 00 | 01 | `001010000000000001` |
 | 000000 | **Rformat1** | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 00 | 00 | 10 | 00 | `000000010010001000` |
 | 000000 | **Rformat2** | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 0 |
+## 🛠️ Software & Tools Used
+
+| Tool | Purpose |
+|---|---|
+| **Verilog HDL** | Hardware description and RTL design |
+| **Icarus Verilog** | RTL compilation and simulation |
+| **GTKWave** | Simulation waveform analysis |
+| **Xilinx Vivado** | RTL synthesis, implementation, and FPGA design analysis |
+| **VS Code** | RTL coding and project development |
+| **Git & GitHub** | Version control and project hosting |
