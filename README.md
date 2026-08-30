@@ -167,3 +167,25 @@ The control unit uses an **18-bit microinstruction format**, consisting of a **1
 | **Xilinx Vivado** | RTL synthesis, implementation, and FPGA design analysis |
 | **VS Code** | RTL coding and project development |
 | **Git & GitHub** | Version control and project hosting |
+## 📚 Reference
+
+- **David A. Patterson and John L. Hennessy**, *Computer Organization and Design: The Hardware/Software Interface*, MIPS Edition, Morgan Kaufmann.
+
+> The processor architecture and concepts in this project are based on the classical MIPS datapath and control organization described by Patterson and Hennessy.
+## 🚀 Future Improvements
+
+| Improvement | Description |
+|---|---|
+| **More MIPS Instructions** | Extend the processor to support additional MIPS instructions |
+| **Pipelined Architecture** | Upgrade the multi-cycle processor to a pipelined MIPS architecture |
+| **Cache Memory** | Integrate instruction and data cache memories |
+| **Interrupt & Exception Handling** | Add support for processor interrupts and exceptions |
+## 📝 Conclusion
+
+This project presents the RTL implementation of a **32-bit MIPS Multi-Cycle Processor** using a **ROM-based microprogrammed control unit**.
+
+The design demonstrates the interaction between the **MIPS instruction set, datapath, memory, ALU, register file, and microprogrammed control logic**. The multi-cycle architecture enables hardware resources to be reused across different instruction execution stages, while the ROM-based control unit provides a structured and extensible method for generating processor control signals.
+
+The processor was designed using **Verilog HDL**, verified through RTL simulation, and targeted for implementation on a **Xilinx Artix-7 FPGA** using **Xilinx Vivado**.
+
+The architectural concepts used in this project are based on the classical MIPS processor organization presented in *Computer Organization and Design: The Hardware/Software Interface* by **David A. Patterson and John L. Hennessy**, a well-known reference in computer architecture. The book uses MIPS as a central example for explaining processor datapaths, control, multi-cycle implementations, and microprogramming.
