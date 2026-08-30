@@ -51,6 +51,30 @@ The resulting design provides a structured and easily extensible approach to pro
 - FPGA-oriented RTL implementation
 
 ---
+## 🧩 Datapath Architecture
+
+The processor is implemented using a **Multicycle MIPS Datapath** based on the
+Hennessy–Patterson architecture. The datapath reuses the same hardware
+resources across multiple clock cycles to execute different instruction types.
+
+### Datapath Components
+
+The main components of the datapath are:
+
+- **Program Counter (PC)** – Stores the address of the current instruction.
+- **Memory** – Used for instruction fetch and data memory operations.
+- **Instruction Register (IR)** – Stores the fetched instruction.
+- **Register File** – Provides two register operands and supports register write-back.
+- **A Register** – Stores the first register-file output.
+- **B Register** – Stores the second register-file output.
+- **Memory Data Register (MDR)** – Stores data read from memory.
+- **ALU** – Performs arithmetic, logical, address calculation, and comparison operations.
+- **ALUOut Register** – Stores the intermediate ALU result.
+- **Sign-Extend Unit** – Converts the 16-bit immediate into a 32-bit value.
+- **Shift-Left-2 Unit** – Shifts the branch offset left by two bits.
+- **Multiplexers (MUXes)** – Select the appropriate data sources for the datapath.
+- **ALU Control** – Generates the required ALU operation.
+
 ## 🧠 ROM-Based Microprogrammed Control Unit
 
 The processor uses a **ROM-based microprogrammed control unit** to generate the control signals required to operate the multi-cycle MIPS datapath. Instead of implementing the control sequence entirely using hardwired combinational logic, the required control signals are stored as microinstructions in ROM. Each microinstruction specifies the datapath operations for a particular processor state, along with a **2-bit sequencing field** that determines how the next microinstruction is selected. The control flow uses sequential execution, return to the Fetch state, and two opcode-based dispatch mechanisms to support the different instruction classes.
