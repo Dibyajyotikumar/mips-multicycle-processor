@@ -51,11 +51,6 @@ The resulting design provides a structured and easily extensible approach to pro
 - FPGA-oriented RTL implementation
 
 ---
-## 🧩 Datapath Architecture
-
-The processor is implemented using a **Multicycle MIPS Datapath** based on the
-Hennessy–Patterson architecture. The datapath reuses the same hardware
-resources across multiple clock cycles to execute different instruction types.
 ## 📚 Instruction Set Supported
 
 | Instruction | Type | Operation |
@@ -66,6 +61,11 @@ resources across multiple clock cycles to execute different instruction types.
 | **SUB** | R-Type | Subtraction |
 | **BEQ** | Branch | Branch if registers are equal |
 | **J** | Jump | Unconditional jump |
+## 🧩 Datapath Architecture
+
+The processor is implemented using a **Multicycle MIPS Datapath** based on the
+Hennessy–Patterson architecture. The datapath reuses the same hardware
+resources across multiple clock cycles to execute different instruction types.
 ### Datapath Components
 
 The main components of the datapath are:
