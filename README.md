@@ -110,58 +110,19 @@ Each ROM entry is an **18-bit microinstruction**:
 | Control Field | 16 bits | Generates datapath and control signals |
 | Next Field | 2 bits | Determines microinstruction sequencing |
 | **Total** | **18 bits** | Complete ROM word |
+## 🧠 Control Microprogram
 
-```text
-18-bit ROM Word
-┌────────────────────────────────┬──────────────┐
-│      16-bit Control Field      │ 2-bit Next   │
-│                                │    Field     │
-└────────────────────────────────┴──────────────┘
-### Instruction-level flow
+The ROM-based control unit uses a microprogram consisting of **10 microinstructions**. Each microinstruction generates the required datapath control signals and specifies the sequencing operation.
 
-You can then put this immediately below the tables:
-
-```markdown
-### Microinstruction ROM
-
-| Opcode | Label | PCW | PCWC | IorD | MR | MW | IRW | MtoR | RW | RDst | A | B[1:0] | PCSrc[1:0] | ALUOp[1:0] | Next[1:0] | 18-bit ROM Word |
-|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|---|---|---|
-| — | **Fetch** | 1 | 0 | 0 | 1 | 0 | 1 | 0 | 0 | 0 | 0 | `01` | `00` | `00` | `00` | `100101000001000000` |
-| — | **Decode** | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | `11` | `00` | `00` | `10` | `000000000011000010` |
-| `100011 / 101011` | **Mem1** | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | `10` | `00` | `00` | `11` | `000000001110000011` |
-| `100011` | **LW2** | 0 | 0 | 1 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | `00` | `00` | `00` | `00` | `001100000000000000` |
-| `100011` | **LW3** | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 0 | 0 | `00` | `00` | `00` | `01` | `000000110000000001` |
-| `101011` | **SW2** | 0 | 0 | 1 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | `00` | `00` | `00` | `01` | `001010000000000001` |
-| `000000` | **Rformat1** | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | `00` | `00` | `10` | `00` | `000000010010000000` |
-| `000000` | **Rformat2** | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 0 | `00` | `00` | `00` | `01` | `000000110000000001` |
-| `000100` | **BEQ1** | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | `00` | `01` | `01` | `01` | `01000100001010101` |
-| `000010` | **JUMP1** | 1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | `00` | `10` | `00` | `01` | `100000000000100001` |
-## 🔁 Instruction Microprogram Flow
-
-```text
-                 FETCH
-                   │
-                   ▼
-                DECODE
-                   │
-             DISPATCH 1
-                   │
-        ┌──────────┼──────────┐
-        │          │          │
-        ▼          ▼          ▼
-    R-format      LW/SW     BEQ / J
-        │          │          │
-        ▼          ▼          ▼
-    Rformat1      Mem1     BEQ1/JUMP1
-        │          │
-        ▼          ▼
-    Rformat2    DISPATCH 2
-        │          │
-        │       ┌──┴──┐
-        │       ▼     ▼
-        │      LW2   SW2
-        │       │     │
-        │       ▼     │
-        │      LW3    │
-        │       │     │
-        └───────┴─────┴──────► FETCH
+| Label | ALU Control | SRC1 | SRC2 | Register Control | Memory Control | PCWrite Control | Sequencing |
+|---|---|---|---|---|---|---|---|
+| **Fetch** | Add | PC | 4 | — | Read PC | ALU | Seq |
+| **Decode** | Add | PC | Extshft | Read | — | — | Dispatch 1 |
+| **Mem1** | Add | A | Extend | — | — | — | Dispatch 2 |
+| **LW2** | — | — | — | — | Read ALU | — | Seq |
+| **LW3** | — | — | — | Write MDR | — | — | Fetch |
+| **SW2** | — | — | — | — | Write ALU | — | Fetch |
+| **Rformat1** | Func code | A | B | — | — | — | Seq |
+| **Rformat2** | — | — | — | Write ALU | — | — | Fetch |
+| **BEQ1** | Sub | A | B | — | — | ALUOut-cond | Fetch |
+| **JUMP1** | — | — | — | — | — | Jump address | Fetch |
