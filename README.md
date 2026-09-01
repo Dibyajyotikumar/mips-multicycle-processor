@@ -167,6 +167,30 @@ The control unit uses an **18-bit microinstruction format**, consisting of a **1
 | **Xilinx Vivado** | RTL synthesis, implementation, and FPGA design analysis |
 | **VS Code** | RTL coding and project development |
 | **Git & GitHub** | Version control and project hosting |
+
+## Synthesis Results (Artix-7 XC7A35T)
+
+- **Synthesis Tool:** AMD/Xilinx Vivado
+- **Target Part:** `xc7a35tcpg236-1`
+
+| Resource | Utilized | Available | Utilization |
+|---|---:|---:|---:|
+| Slice LUTs | 1,480 | 20,800 | 7% |
+| Slice Registers (FFs) | 1,194 | 41,600 | 3% |
+| F7 Multiplexers | 513 | 16,300 | 3% |
+| F8 Multiplexers | 128 | 8,150 | 2% |
+| Bonded IOB | 34 | 106 | 32% |
+| BUFGCTRL | 1 | 32 | 3% |
+
+### Vivado Synthesis Utilization
+
+The design was synthesized using AMD/Xilinx Vivado targeting the
+Artix-7 `xc7a35tcpg236-1` FPGA. The synthesis report shows that the
+processor uses 1,480 Slice LUTs and 1,194 Slice Registers, with
+513 F7 multiplexers, 128 F8 multiplexers, 34 bonded I/O blocks, and
+1 global clock buffer.
+
+![Synthesis Utilization Report](Report_utilization.png)
 ## 📚 Reference
 
 - **David A. Patterson and John L. Hennessy**, *Computer Organization and Design: The Hardware/Software Interface*, MIPS Edition, Morgan Kaufmann.
