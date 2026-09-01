@@ -159,8 +159,6 @@ The control unit uses an **18-bit microinstruction format**, consisting of a **1
 | 000000 | **Rformat2** | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 0 |
 
 ## Repository Structure
-
-```text
 32-bit-multicycle-mips-cpu/
 │
 ├── RTL Source Files
