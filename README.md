@@ -157,6 +157,36 @@ The control unit uses an **18-bit microinstruction format**, consisting of a **1
 | 101011 | **SW2** | 0 | 0 | 1 | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 00 | 00 | 00 | 01 | `001010000000000001` |
 | 000000 | **Rformat1** | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 00 | 00 | 10 | 00 | `000000010010001000` |
 | 000000 | **Rformat2** | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 0 |
+
+## Repository Structure
+
+```text
+32-bit-multicycle-mips-cpu/
+│
+├── RTL Source Files
+│   ├── top_mips.v
+│   ├── datapath.v
+│   ├── control_rom.v
+│   ├── memory.v
+│   └── test_b.v
+│
+├── Architecture & Schematics
+│   ├── top_view.png
+│   ├── control.png
+│   ├── control_unit_view.png
+│   ├── datapath.png
+│   └── Mips_schematic_design.pdf
+│
+├── Simulation Results
+│   ├── gtk_wave.png
+│   ├── Final_register_value.png
+│   ├── simulation_console_log1.png
+│   └── simulation_console_log2.png
+│
+├── Synthesis Results
+│   └── Report_utilization.png
+│
+└── README.md
 ## 🛠️ Software & Tools Used
 
 | Tool | Purpose |
