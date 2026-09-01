@@ -158,33 +158,6 @@ The control unit uses an **18-bit microinstruction format**, consisting of a **1
 | 000000 | **Rformat1** | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 00 | 00 | 10 | 00 | `000000010010001000` |
 | 000000 | **Rformat2** | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 1 | 0 |
 
-## Repository Structure
-32-bit-multicycle-mips-cpu/
-│
-├── RTL Source Files
-│   ├── top_mips.v
-│   ├── datapath.v
-│   ├── control_rom.v
-│   ├── memory.v
-│   └── test_b.v
-│
-├── Architecture & Schematics
-│   ├── top_view.png
-│   ├── control.png
-│   ├── control_unit_view.png
-│   ├── datapath.png
-│   └── Mips_schematic_design.pdf
-│
-├── Simulation Results
-│   ├── gtk_wave.png
-│   ├── Final_register_value.png
-│   ├── simulation_console_log1.png
-│   └── simulation_console_log2.png
-│
-├── Synthesis Results
-│   └── Report_utilization.png
-│
-└── README.md
 ## 🛠️ Software & Tools Used
 
 | Tool | Purpose |
@@ -241,3 +214,31 @@ The design demonstrates the interaction between the **MIPS instruction set, data
 The processor was designed using **Verilog HDL**, verified through RTL simulation, and targeted for implementation on a **Xilinx Artix-7 FPGA** using **Xilinx Vivado**.
 
 The architectural concepts used in this project are based on the classical MIPS processor organization presented in *Computer Organization and Design: The Hardware/Software Interface* by **David A. Patterson and John L. Hennessy**, a well-known reference in computer architecture. The book uses MIPS as a central example for explaining processor datapaths, control, multi-cycle implementations, and microprogramming.
+## Repository Structure
+
+32-bit-multicycle-mips-cpu/
+│
+├── RTL Source Files
+│   ├── top_mips.v
+│   ├── datapath.v
+│   ├── control_rom.v
+│   ├── memory.v
+│   └── test_b.v
+│
+├── Architecture & Schematics
+│   ├── top_view.png
+│   ├── control.png
+│   ├── control_unit_view.png
+│   ├── datapath.png
+│   └── Mips_schematic_design.pdf
+│
+├── Simulation Results
+│   ├── gtk_wave.png
+│   ├── Final_register_value.png
+│   ├── simulation_console_log1.png
+│   └── simulation_console_log2.png
+│
+├── Synthesis Results
+│   └── Report_utilization.png
+│
+└── README.md
