@@ -7,38 +7,7 @@ A Verilog HDL implementation of a **32-bit MIPS Multi-Cycle Processor** using a 
 The design is based on the classical multi-cycle MIPS datapath architecture and replaces conventional hardwired control logic with a compact microprogram stored in ROM.
 
 ---
-## 📁 Project Structure
 
-```text
-32-bit-multicycle-mips-cpu/
-│
-├── README.md
-│
-├── RTL/
-│   ├── top_mips.v
-│   ├── datapath.v
-│   ├── control_rom.v
-│   └── memory.v
-│
-├── Testbench/
-│   └── test_b.v
-│
-├── Simulation/
-│   ├── gtk_wave.png
-│   ├── simulation_console_log1.png
-│   └── simulation_console_log2.png
-│
-├── Architecture/
-│   ├── top_view.png
-│   ├── datapath.png
-│   ├── control.png
-│   ├── control_unit_view.png
-│   └── Mips_schematic_design.png
-│
-└── Results/
-    ├── Final_register_value.png
-    └── Report_utilization.png
----
 ## 📌 Project Overview
 
 This project implements a 32-bit MIPS processor in Verilog HDL using a **multi-cycle datapath**.
