@@ -28,6 +28,37 @@ Instead of generating every control signal through a large combinational FSM, th
 The resulting design provides a structured and easily extensible approach to processor control.
 
 ---
+## 📁 Project Structure
+
+```text
+32-bit-multicycle-mips-cpu/
+│
+├── README.md
+│
+├── RTL/
+│   ├── top_mips.v
+│   ├── datapath.v
+│   ├── control_rom.v
+│   └── memory.v
+│
+├── Testbench/
+│   └── test_b.v
+│
+├── Simulation/
+│   ├── gtk_wave.png
+│   ├── simulation_console_log1.png
+│   └── simulation_console_log2.png
+│
+├── Architecture/
+│   ├── top_view.png
+│   ├── datapath.png
+│   ├── control.png
+│   ├── control_unit_view.png
+│   └── Mips_schematic_design.png
+│
+└── Results/
+    ├── Final_register_value.png
+    └── Report_utilization.png
 
 ## ✨ Key Features
 
