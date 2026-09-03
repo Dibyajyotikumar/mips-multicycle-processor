@@ -28,37 +28,7 @@ Instead of generating every control signal through a large combinational FSM, th
 The resulting design provides a structured and easily extensible approach to processor control.
 
 ---
-## 📁 Project Structure
 
-```text
-32-bit-multicycle-mips-cpu/
-│
-├── README.md
-│
-├── RTL/
-│   ├── top_mips.v
-│   ├── datapath.v
-│   ├── control_rom.v
-│   └── memory.v
-│
-├── Testbench/
-│   └── test_b.v
-│
-├── Simulation/
-│   ├── gtk_wave.png
-│   ├── simulation_console_log1.png
-│   └── simulation_console_log2.png
-│
-├── Architecture/
-│   ├── top_view.png
-│   ├── datapath.png
-│   ├── control.png
-│   ├── control_unit_view.png
-│   └── Mips_schematic_design.png
-│
-└── Results/
-    ├── Final_register_value.png
-    └── Report_utilization.png
 
 ## ✨ Key Features
 
@@ -245,3 +215,34 @@ The design demonstrates the interaction between the **MIPS instruction set, data
 The processor was designed using **Verilog HDL**, verified through RTL simulation, and targeted for implementation on a **Xilinx Artix-7 FPGA** using **Xilinx Vivado**.
 
 The architectural concepts used in this project are based on the classical MIPS processor organization presented in *Computer Organization and Design: The Hardware/Software Interface* by **David A. Patterson and John L. Hennessy**, a well-known reference in computer architecture. The book uses MIPS as a central example for explaining processor datapaths, control, multi-cycle implementations, and microprogramming.
+## 📁 Project Structure
+
+```text
+32-bit-multicycle-mips-cpu/
+│
+├── README.md
+│
+├── RTL/
+│   ├── top_mips.v
+│   ├── datapath.v
+│   ├── control_rom.v
+│   └── memory.v
+│
+├── Testbench/
+│   └── test_b.v
+│
+├── Simulation/
+│   ├── gtk_wave.png
+│   ├── simulation_console_log1.png
+│   └── simulation_console_log2.png
+│
+├── Architecture/
+│   ├── top_view.png
+│   ├── datapath.png
+│   ├── control.png
+│   ├── control_unit_view.png
+│   └── Mips_schematic_design.png
+│
+└── Results/
+    ├── Final_register_value.png
+    └── Report_utilization.png
